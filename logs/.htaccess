@@ -1,0 +1,18 @@
+# Deny direct access to log files
+Order Deny,Allow
+Deny from all
+
+# Prevent directory listing
+Options -Indexes
+
+# Prevent execution of PHP files
+<Files "*.php">
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+# Deny access to all log files
+<Files "*.log">
+    Order Deny,Allow
+    Deny from all
+</Files>

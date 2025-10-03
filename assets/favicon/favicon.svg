@@ -1,0 +1,99 @@
+
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Favicon shield gradient -->
+    <linearGradient id="shieldGrad" x1="20%" y1="20%" x2="80%" y2="80%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="35%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#b8b8b8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect for favicon -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0.8" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Outer glowing ring -->
+  <circle cx="16" cy="16" r="15" fill="none" stroke="#4dd0e1" stroke-width="0.8" filter="url(#glow)" opacity="0.9"/>
+  
+  <!-- Inner dashed circle -->
+  <circle cx="16" cy="16" r="12" fill="none" stroke="#4dd0e1" stroke-width="0.4" stroke-dasharray="1.5,0.8" opacity="0.7"/>
+  
+  <!-- Directional triangular markers -->
+  <polygon points="16,2 17.5,5 14.5,5" fill="#4dd0e1" opacity="0.8"/>
+  <polygon points="30,16 27,14.5 27,17.5" fill="#4dd0e1" opacity="0.8"/>
+  <polygon points="16,30 14.5,27 17.5,27" fill="#4dd0e1" opacity="0.8"/>
+  <polygon points="2,16 5,17.5 5,14.5" fill="#4dd0e1" opacity="0.8"/>
+  
+  <!-- Network hub at top -->
+  <g transform="translate(16,5)">
+    <!-- Central node -->
+    <circle cx="0" cy="0" r="0.8" fill="#4dd0e1"/>
+    
+    <!-- Satellite nodes -->
+    <circle cx="-1.5" cy="1.5" r="0.5" fill="#4dd0e1"/>
+    <circle cx="1.5" cy="1.5" r="0.5" fill="#4dd0e1"/>
+    <circle cx="-2" cy="-0.5" r="0.5" fill="#4dd0e1"/>
+    <circle cx="2" cy="-0.5" r="0.5" fill="#4dd0e1"/>
+    <circle cx="0" cy="-2" r="0.5" fill="#4dd0e1"/>
+    
+    <!-- Connection lines -->
+    <line x1="0" y1="0" x2="-1.5" y2="1.5" stroke="#4dd0e1" stroke-width="0.3"/>
+    <line x1="0" y1="0" x2="1.5" y2="1.5" stroke="#4dd0e1" stroke-width="0.3"/>
+    <line x1="0" y1="0" x2="-2" y2="-0.5" stroke="#4dd0e1" stroke-width="0.3"/>
+    <line x1="0" y1="0" x2="2" y2="-0.5" stroke="#4dd0e1" stroke-width="0.3"/>
+    <line x1="0" y1="0" x2="0" y2="-2" stroke="#4dd0e1" stroke-width="0.3"/>
+  </g>
+  
+  <!-- Perfect shield shape for favicon -->
+  <path d="M 16 8
+           L 12 10
+           L 10 11
+           L 10 18
+           Q 10 23 16 25
+           Q 22 23 22 18
+           L 22 11
+           L 20 10
+           Z" 
+           fill="url(#shieldGrad)" 
+           stroke="#999999" 
+           stroke-width="0.3"/>
+  
+  <!-- Shield highlight -->
+  <path d="M 16 8.5
+           L 12.5 10.5
+           L 11 11.5
+           L 11 17.5
+           Q 11 21 16 22.5
+           Q 21 21 21 17.5
+           L 21 11.5
+           L 19.5 10.5
+           Z" 
+           fill="none" 
+           stroke="#ffffff" 
+           stroke-width="0.3"
+           opacity="0.6"/>
+  
+  <!-- OIS Text optimized for favicon -->
+  <text x="16" y="19" 
+        font-family="Arial, sans-serif" 
+        font-size="7" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="#2a2a2a">OIS</text>
+  
+  <!-- Text highlight -->
+  <text x="15.7" y="18.7" 
+        font-family="Arial, sans-serif" 
+        font-size="7" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="#ffffff" 
+        opacity="0.5">OIS</text>
+</svg>

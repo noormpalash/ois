@@ -1,0 +1,119 @@
+
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Apple touch icon shield gradient -->
+    <linearGradient id="shieldGrad" x1="20%" y1="20%" x2="80%" y2="80%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="15%" style="stop-color:#f8f8f8;stop-opacity:1" />
+      <stop offset="35%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="55%" style="stop-color:#d0d0d0;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#b8b8b8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a0a0a0;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Background gradient for iOS -->
+    <radialGradient id="bgGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d1929;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- iOS rounded background -->
+  <rect width="180" height="180" rx="40" ry="40" fill="url(#bgGrad)"/>
+  
+  <!-- Outer glowing ring -->
+  <circle cx="90" cy="90" r="84" fill="none" stroke="#4dd0e1" stroke-width="2" filter="url(#glow)" opacity="0.9"/>
+  
+  <!-- Second ring -->
+  <circle cx="90" cy="90" r="79" fill="none" stroke="#26c6da" stroke-width="1.5" opacity="0.95"/>
+  
+  <!-- Inner dashed circle -->
+  <circle cx="90" cy="90" r="66" fill="none" stroke="#4dd0e1" stroke-width="1" stroke-dasharray="4,2" opacity="0.75"/>
+  
+  <!-- Directional triangular markers -->
+  <polygon points="90,10 94,20 86,20" fill="#4dd0e1" opacity="0.85"/>
+  <polygon points="170,90 160,86 160,94" fill="#4dd0e1" opacity="0.85"/>
+  <polygon points="90,170 86,160 94,160" fill="#4dd0e1" opacity="0.85"/>
+  <polygon points="10,90 20,94 20,86" fill="#4dd0e1" opacity="0.85"/>
+  
+  <!-- Network connection hub at top -->
+  <g transform="translate(90,27)">
+    <!-- Central hub node -->
+    <circle cx="0" cy="0" r="3" fill="#4dd0e1" stroke="#26c6da" stroke-width="0.5"/>
+    
+    <!-- Satellite nodes -->
+    <circle cx="-8" cy="8" r="2" fill="#4dd0e1"/>
+    <circle cx="8" cy="8" r="2" fill="#4dd0e1"/>
+    <circle cx="-10" cy="-2" r="2" fill="#4dd0e1"/>
+    <circle cx="10" cy="-2" r="2" fill="#4dd0e1"/>
+    <circle cx="0" cy="-10" r="2" fill="#4dd0e1"/>
+    
+    <!-- Connection lines -->
+    <line x1="0" y1="0" x2="-8" y2="8" stroke="#4dd0e1" stroke-width="1"/>
+    <line x1="0" y1="0" x2="8" y2="8" stroke="#4dd0e1" stroke-width="1"/>
+    <line x1="0" y1="0" x2="-10" y2="-2" stroke="#4dd0e1" stroke-width="1"/>
+    <line x1="0" y1="0" x2="10" y2="-2" stroke="#4dd0e1" stroke-width="1"/>
+    <line x1="0" y1="0" x2="0" y2="-10" stroke="#4dd0e1" stroke-width="1"/>
+  </g>
+  
+  <!-- Perfect shield shape -->
+  <path d="M 90 45
+           L 68 52
+           L 56 57
+           L 56 97
+           Q 56 121 90 135
+           Q 124 121 124 97
+           L 124 57
+           L 112 52
+           Z" 
+           fill="url(#shieldGrad)" 
+           stroke="#999999" 
+           stroke-width="1"/>
+  
+  <!-- Shield highlight -->
+  <path d="M 90 47
+           L 70 53
+           L 59 58
+           L 59 95
+           Q 59 116 90 128
+           Q 121 116 121 95
+           L 121 58
+           L 110 53
+           Z" 
+           fill="none" 
+           stroke="#ffffff" 
+           stroke-width="1"
+           opacity="0.6"/>
+  
+  <!-- OIS Text for Apple touch icon -->
+  <text x="90" y="98" 
+        font-family="Arial, sans-serif" 
+        font-size="26" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="#2a2a2a">OIS</text>
+  
+  <!-- Text highlight -->
+  <text x="89" y="97" 
+        font-family="Arial, sans-serif" 
+        font-size="26" 
+        font-weight="bold" 
+        text-anchor="middle" 
+        fill="#ffffff" 
+        opacity="0.5">OIS</text>
+  
+  <!-- Bottom right decorative star -->
+  <g transform="translate(156,156)">
+    <polygon points="3,0 6,3 3,6 0,3" fill="#4dd0e1" opacity="0.7"/>
+    <polygon points="3,1 5,3 3,5 1,3" fill="#26c6da" opacity="0.5"/>
+  </g>
+</svg>
