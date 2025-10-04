@@ -1908,19 +1908,31 @@ function toggleFilters() {
     }
 }
 
-function applyAdminFilters() {
+async function applyAdminFilters() {
     const filters = getAdminFilters();
+    const searchTerm = document.getElementById('search-operators').value.trim();
+    
+    console.log('Admin: Applying filters:', filters);
+    console.log('Admin: Search term:', searchTerm);
+    
+    // Check if any filters are active
+    const hasActiveFilters = Object.values(filters).some(value => value !== '') || searchTerm !== '';
+    
+    if (hasActiveFilters) {
+        // Load all operators first if filters are applied
+        await loadAllOperatorsForAdminFiltering();
+    }
     
     // Filter the allOperators array based on selected filters
     let filteredOperators = [...allOperators];
     
     // Apply search filter first
-    const searchTerm = document.getElementById('search-operators').value.trim().toLowerCase();
     if (searchTerm) {
+        const searchLower = searchTerm.toLowerCase();
         filteredOperators = filteredOperators.filter(operator => 
-            operator.name.toLowerCase().includes(searchTerm) ||
-            operator.personal_no.toLowerCase().includes(searchTerm) ||
-            operator.rank.toLowerCase().includes(searchTerm)
+            operator.name.toLowerCase().includes(searchLower) ||
+            operator.personal_no.toLowerCase().includes(searchLower) ||
+            operator.rank.toLowerCase().includes(searchLower)
         );
     }
     
@@ -1953,6 +1965,8 @@ function applyAdminFilters() {
         filteredOperators = filteredOperators.filter(operator => operator.unit_id == filters.unit);
     }
     
+    console.log('Admin: Filtered operators count:', filteredOperators.length);
+    
     // Update the display
     displayOperators(filteredOperators);
     updateFilterSummary(filters);
@@ -1969,6 +1983,42 @@ function getAdminFilters() {
     };
 }
 
+// Load all operators for admin filtering (without pagination limit)
+async function loadAllOperatorsForAdminFiltering() {
+    console.log('Admin: Loading all operators for filtering...');
+    
+    try {
+        // Load all operators without pagination limit
+        const response = await fetch(`${API_BASE}operators.php?limit=1000`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        // Check for API error
+        if (result.error) {
+            throw new Error(result.message || result.error);
+        }
+        
+        // Handle different response formats
+        if (result.data) {
+            allOperators = result.data;
+        } else if (Array.isArray(result)) {
+            allOperators = result;
+        } else {
+            throw new Error('Unexpected API response format');
+        }
+        
+        console.log('Admin: Loaded all operators for filtering:', allOperators.length);
+        
+    } catch (error) {
+        console.error('Admin: Error loading all operators for filtering:', error);
+        // Fallback to current operators if loading fails
+    }
+}
+
 function clearAdminFilters() {
     document.getElementById('admin-filter-rank').value = '';
     document.getElementById('admin-filter-corps').value = '';
@@ -1980,8 +2030,8 @@ function clearAdminFilters() {
     // Also clear search
     document.getElementById('search-operators').value = '';
     
-    // Reset display to all operators
-    displayOperators(allOperators);
+    // Reload all operators from database
+    loadOperators();
     updateFilterSummary({});
 }
 

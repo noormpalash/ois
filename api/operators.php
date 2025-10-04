@@ -75,7 +75,7 @@ function getAllOperators($db) {
     try {
         // Get pagination parameters
         $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
-        $limit = isset($_GET['limit']) ? max(1, min(100, (int)$_GET['limit'])) : 50;
+        $limit = isset($_GET['limit']) ? max(1, min(1000, (int)$_GET['limit'])) : 50;
         $offset = ($page - 1) * $limit;
         
         // Get search parameter

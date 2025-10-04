@@ -1,5 +1,5 @@
 -- OIS Database Backup
--- Generated on: 2025-10-03 07:38:12
+-- Generated on: 2025-10-04 09:01:55
 -- Database: operator_info_system
 
 SET FOREIGN_KEY_CHECKS = 0;
@@ -20,10 +20,9 @@ CREATE TABLE `admin_login_log` (
   KEY `idx_username` (`username`),
   KEY `idx_created_at` (`created_at`),
   KEY `idx_success` (`success`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `admin_login_log`
-INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('55', 'palash', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Login successful', '2025-10-01 20:33:57');
 INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('56', 'palash', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Login successful', '2025-10-01 20:40:31');
 INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('57', 'admin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Login successful', '2025-10-01 20:41:28');
 INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('58', 'palash', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'Login successful', '2025-10-01 23:15:51');
@@ -63,6 +62,12 @@ INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_
 INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('92', 'admin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'Login successful', '2025-10-03 10:48:41');
 INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('93', 'admin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'Login successful', '2025-10-03 10:49:00');
 INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('94', 'admin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36', 'Login successful', '2025-10-03 10:50:02');
+INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('95', 'palash', '0', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'User not found or inactive', '2025-10-04 12:26:02');
+INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('96', 'admin', '0', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'User not found or inactive', '2025-10-04 12:26:20');
+INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('97', 'admin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'Login successful', '2025-10-04 12:28:56');
+INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('98', 'superadmin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'Login successful', '2025-10-04 12:30:45');
+INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('99', 'superadmin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'Login successful', '2025-10-04 12:44:58');
+INSERT INTO `admin_login_log` (`id`, `username`, `success`, `ip_address`, `user_agent`, `details`, `created_at`) VALUES ('100', 'admin', '1', '::1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.6 Safari/605.1.15', 'Login successful', '2025-10-04 12:59:05');
 
 -- Table structure for table `admin_users`
 DROP TABLE IF EXISTS `admin_users`;
@@ -82,9 +87,12 @@ CREATE TABLE `admin_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `fk_admin_created_by` (`created_by`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `admin_users`
+INSERT INTO `admin_users` (`id`, `username`, `password`, `full_name`, `role`, `status`, `email`, `is_active`, `created_at`, `updated_at`, `last_login`, `created_by`) VALUES ('9', 'admin', '$2y$10$Dlv/xCJ6spES.ul7p9TIv.BQRhLRmPTokTniPybpLem8kxR758K3C', 'System Administrator', 'admin', 'active', 'admin@ois.net', '1', '2025-10-04 12:28:15', '2025-10-04 12:59:05', '2025-10-04 12:59:05', NULL);
+INSERT INTO `admin_users` (`id`, `username`, `password`, `full_name`, `role`, `status`, `email`, `is_active`, `created_at`, `updated_at`, `last_login`, `created_by`) VALUES ('10', 'superadmin', '$2y$10$Ek6N.obGNyQmbg9e7GQxGuQjxbESWc/uwfx/.oJkHWXt2oR3aOuxm', 'Noor M Palash', 'super_admin', 'active', 'superadmin@ois.net', '1', '2025-10-04 12:29:36', '2025-10-04 12:44:58', '2025-10-04 12:44:58', '9');
+INSERT INTO `admin_users` (`id`, `username`, `password`, `full_name`, `role`, `status`, `email`, `is_active`, `created_at`, `updated_at`, `last_login`, `created_by`) VALUES ('11', 'staff', '$2y$10$wvz9H8eVWZxa100l6u3ikuTOSlwKqV7IRoahcWDD8Ei0lt.VJi29q', 'Staff', 'add_op', 'active', 'staff@ois.net', '1', '2025-10-04 12:30:27', '2025-10-04 12:30:27', NULL, '9');
 
 -- Table structure for table `animation_settings`
 DROP TABLE IF EXISTS `animation_settings`;
@@ -98,11 +106,11 @@ CREATE TABLE `animation_settings` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `setting_name` (`setting_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `animation_settings`
-INSERT INTO `animation_settings` (`id`, `setting_name`, `setting_value`, `description`, `updated_by`, `updated_at`, `created_at`) VALUES ('8', 'hero_animations', '0', 'Enable/disable hero section animations (logo rotation, gradient effects)', 'admin', '2025-10-03 11:38:00', '2025-10-03 11:33:05');
-INSERT INTO `animation_settings` (`id`, `setting_name`, `setting_value`, `description`, `updated_by`, `updated_at`, `created_at`) VALUES ('9', 'drone_animations', '0', 'Enable/disable military drone animation with scanning effects and operator info display', 'admin', '2025-10-03 11:38:00', '2025-10-03 11:36:29');
+INSERT INTO `animation_settings` (`id`, `setting_name`, `setting_value`, `description`, `updated_by`, `updated_at`, `created_at`) VALUES ('9', 'drone_animations', '0', 'Enable/disable military drone animation with scanning effects and operator info display', 'superadmin', '2025-10-04 12:56:48', '2025-10-03 11:36:29');
+INSERT INTO `animation_settings` (`id`, `setting_name`, `setting_value`, `description`, `updated_by`, `updated_at`, `created_at`) VALUES ('10', 'hero_animations', '0', 'Enable/disable hero section animations (logo rotation, gradient effects)', 'superadmin', '2025-10-04 12:56:48', '2025-10-03 11:45:04');
 
 -- Table structure for table `cores`
 DROP TABLE IF EXISTS `cores`;
@@ -111,10 +119,13 @@ CREATE TABLE `cores` (
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `cores`
-INSERT INTO `cores` (`id`, `name`) VALUES ('8', 'ASC');
+INSERT INTO `cores` (`id`, `name`) VALUES ('19', 'Air Defence');
+INSERT INTO `cores` (`id`, `name`) VALUES ('17', 'Armoured');
+INSERT INTO `cores` (`id`, `name`) VALUES ('18', 'Artillery');
+INSERT INTO `cores` (`id`, `name`) VALUES ('20', 'ASC');
 INSERT INTO `cores` (`id`, `name`) VALUES ('14', 'EME');
 INSERT INTO `cores` (`id`, `name`) VALUES ('5', 'Engineers');
 INSERT INTO `cores` (`id`, `name`) VALUES ('9', 'Infantry (BIR)');
@@ -129,10 +140,14 @@ CREATE TABLE `exercises` (
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `exercises`
-INSERT INTO `exercises` (`id`, `name`) VALUES ('4', 'SP');
+INSERT INTO `exercises` (`id`, `name`) VALUES ('11', 'AC&S');
+INSERT INTO `exercises` (`id`, `name`) VALUES ('12', 'ACC&S');
+INSERT INTO `exercises` (`id`, `name`) VALUES ('10', 'DG');
+INSERT INTO `exercises` (`id`, `name`) VALUES ('9', 'MC');
+INSERT INTO `exercises` (`id`, `name`) VALUES ('8', 'SP');
 
 -- Table structure for table `formations`
 DROP TABLE IF EXISTS `formations`;
@@ -141,10 +156,13 @@ CREATE TABLE `formations` (
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `formations`
-INSERT INTO `formations` (`id`, `name`) VALUES ('21', '14 Indep ENGR Bde');
+INSERT INTO `formations` (`id`, `name`) VALUES ('29', '10  Inf Div');
+INSERT INTO `formations` (`id`, `name`) VALUES ('27', '10 Inf Div');
+INSERT INTO `formations` (`id`, `name`) VALUES ('28', '11 Inf Div');
+INSERT INTO `formations` (`id`, `name`) VALUES ('30', '14 Indep ENGR Bde');
 INSERT INTO `formations` (`id`, `name`) VALUES ('15', '15 Indep ARMR SQN');
 INSERT INTO `formations` (`id`, `name`) VALUES ('26', '17  Inf Div');
 INSERT INTO `formations` (`id`, `name`) VALUES ('5', '17 Inf Div');
@@ -174,9 +192,11 @@ CREATE TABLE `med_categories` (
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `med_categories`
+INSERT INTO `med_categories` (`id`, `name`) VALUES ('6', 'A');
+INSERT INTO `med_categories` (`id`, `name`) VALUES ('7', 'C');
 
 -- Table structure for table `operator_exercises`
 DROP TABLE IF EXISTS `operator_exercises`;
@@ -191,7 +211,6 @@ CREATE TABLE `operator_exercises` (
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `operator_exercises`
-INSERT INTO `operator_exercises` (`id`, `operator_id`, `exercise_id`, `created_at`) VALUES ('31', '22', '1', '2025-09-29 22:59:30');
 INSERT INTO `operator_exercises` (`id`, `operator_id`, `exercise_id`, `created_at`) VALUES ('32', '22', '2', '2025-09-29 22:59:30');
 INSERT INTO `operator_exercises` (`id`, `operator_id`, `exercise_id`, `created_at`) VALUES ('33', '22', '4', '2025-09-29 22:59:30');
 INSERT INTO `operator_exercises` (`id`, `operator_id`, `exercise_id`, `created_at`) VALUES ('34', '435', '1', '2025-10-01 23:20:29');
@@ -205,14 +224,14 @@ CREATE TABLE `operator_special_notes` (
   `special_note_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `operator_special_notes`
-INSERT INTO `operator_special_notes` (`id`, `operator_id`, `special_note_id`, `created_at`) VALUES ('26', '323', '8', '2025-10-01 13:13:54');
 INSERT INTO `operator_special_notes` (`id`, `operator_id`, `special_note_id`, `created_at`) VALUES ('27', '434', '8', '2025-10-01 20:21:03');
 INSERT INTO `operator_special_notes` (`id`, `operator_id`, `special_note_id`, `created_at`) VALUES ('28', '433', '2', '2025-10-01 23:16:59');
 INSERT INTO `operator_special_notes` (`id`, `operator_id`, `special_note_id`, `created_at`) VALUES ('29', '432', '10', '2025-10-01 23:17:21');
 INSERT INTO `operator_special_notes` (`id`, `operator_id`, `special_note_id`, `created_at`) VALUES ('30', '435', '4', '2025-10-01 23:20:29');
+INSERT INTO `operator_special_notes` (`id`, `operator_id`, `special_note_id`, `created_at`) VALUES ('31', '2409', '9', '2025-10-04 12:40:34');
 
 -- Table structure for table `operators`
 DROP TABLE IF EXISTS `operators`;
@@ -250,7 +269,7 @@ CREATE TABLE `operators` (
   KEY `formation_id` (`formation_id`),
   KEY `med_category_id` (`med_category_id`),
   KEY `fk_operators_exercise` (`exercise_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2268 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2410 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `operators`
 
@@ -261,10 +280,9 @@ CREATE TABLE `ranks` (
   `name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `ranks`
-INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('10', 'Sgt', '2025-10-01 20:16:55');
 INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('11', 'WO', '2025-10-01 20:17:03');
 INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('33', 'LCpl (GNR)', '2025-10-03 09:53:19');
 INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('34', 'Snk (OCU)', '2025-10-03 09:53:19');
@@ -291,6 +309,11 @@ INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('54', 'Snk (CLK)', '202
 INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('55', 'Snk (OPR)', '2025-10-03 11:18:26');
 INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('56', 'Snk (Tech)', '2025-10-03 11:18:26');
 INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('57', 'Cpl (Crypto)', '2025-10-03 11:18:26');
+INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('58', 'LCpl', '2025-10-04 12:32:42');
+INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('59', 'Snk', '2025-10-04 12:32:42');
+INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('60', 'Sgt', '2025-10-04 12:32:43');
+INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('61', 'Cpl', '2025-10-04 12:32:43');
+INSERT INTO `ranks` (`id`, `name`, `created_at`) VALUES ('62', 'Sgt (TA)', '2025-10-04 12:32:43');
 
 -- Table structure for table `special_notes`
 DROP TABLE IF EXISTS `special_notes`;
@@ -302,12 +325,15 @@ CREATE TABLE `special_notes` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `special_notes`
-INSERT INTO `special_notes` (`id`, `name`, `description`, `color`, `created_at`, `updated_at`) VALUES ('8', 'AWGC Prohibited', NULL, '#ff4757', '2025-09-27 11:25:38', '2025-09-27 11:25:38');
 INSERT INTO `special_notes` (`id`, `name`, `description`, `color`, `created_at`, `updated_at`) VALUES ('9', 'Trg NCO', NULL, '#ff4757', '2025-09-27 21:31:00', '2025-09-27 21:31:00');
 INSERT INTO `special_notes` (`id`, `name`, `description`, `color`, `created_at`, `updated_at`) VALUES ('10', 'Died', NULL, '#ff4757', '2025-10-01 20:35:06', '2025-10-01 20:35:06');
+INSERT INTO `special_notes` (`id`, `name`, `description`, `color`, `created_at`, `updated_at`) VALUES ('11', 'Instructor', NULL, '#ff4757', '2025-10-03 11:45:41', '2025-10-03 11:45:41');
+INSERT INTO `special_notes` (`id`, `name`, `description`, `color`, `created_at`, `updated_at`) VALUES ('12', 'AWGC Prohibited ', NULL, '#ff4757', '2025-10-04 13:00:26', '2025-10-04 13:00:26');
+INSERT INTO `special_notes` (`id`, `name`, `description`, `color`, `created_at`, `updated_at`) VALUES ('13', 'Retired', NULL, '#ff4757', '2025-10-04 13:00:40', '2025-10-04 13:00:40');
+INSERT INTO `special_notes` (`id`, `name`, `description`, `color`, `created_at`, `updated_at`) VALUES ('14', 'Court Marshal', NULL, '#ff4757', '2025-10-04 13:01:06', '2025-10-04 13:01:06');
 
 -- Table structure for table `units`
 DROP TABLE IF EXISTS `units`;
@@ -315,10 +341,9 @@ CREATE TABLE `units` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=202 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=206 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table `units`
-INSERT INTO `units` (`id`, `name`) VALUES ('10', '8 Fd Reg Arty');
 INSERT INTO `units` (`id`, `name`) VALUES ('11', '17 Fd Reg Arty');
 INSERT INTO `units` (`id`, `name`) VALUES ('12', '18 Fd Reg Arty');
 INSERT INTO `units` (`id`, `name`) VALUES ('13', '42 Fd Reg Arty');
@@ -510,5 +535,9 @@ INSERT INTO `units` (`id`, `name`) VALUES ('198', '40 EB (Mech)');
 INSERT INTO `units` (`id`, `name`) VALUES ('199', '13 EB');
 INSERT INTO `units` (`id`, `name`) VALUES ('200', '5 EB');
 INSERT INTO `units` (`id`, `name`) VALUES ('201', 'Army ST BN');
+INSERT INTO `units` (`id`, `name`) VALUES ('202', '12 Lancher');
+INSERT INTO `units` (`id`, `name`) VALUES ('203', '16 Cavalory');
+INSERT INTO `units` (`id`, `name`) VALUES ('204', '6 Fd Reg Arty');
+INSERT INTO `units` (`id`, `name`) VALUES ('205', '8 Fd Reg Arty');
 
 SET FOREIGN_KEY_CHECKS = 1;

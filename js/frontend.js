@@ -10,12 +10,38 @@ let paginationInfo = null;
 document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     loadDropdownOptions();
-    loadAllOperators();
+    loadAllOperators(); // Load all operators initially
     loadCorpsStatistics();
     setCurrentYear();
     setupFloatingAdminBtn();
     initializeDroneScanning();
     loadAnimationSettings();
+    
+    // Add debug function to window for testing
+    window.debugArtillery = function() {
+        console.log('=== ARTILLERY DEBUG ===');
+        console.log('Total allOperators:', allOperators.length);
+        console.log('Total filteredOperators:', filteredOperators.length);
+        
+        // Find Artillery corps ID
+        const coresSelect = document.getElementById('filter-cores');
+        let artilleryId = null;
+        for (let i = 0; i < coresSelect.options.length; i++) {
+            if (coresSelect.options[i].text.toLowerCase().includes('artillery')) {
+                artilleryId = coresSelect.options[i].value;
+                break;
+            }
+        }
+        
+        if (artilleryId) {
+            const artilleryOps = allOperators.filter(o => o.cores_id == artilleryId);
+            console.log('Artillery corps ID:', artilleryId);
+            console.log('Artillery operators in allOperators:', artilleryOps.length);
+            console.log('Sample artillery operators:', artilleryOps.slice(0, 5));
+        } else {
+            console.log('Artillery corps not found in dropdown');
+        }
+    };
 });
 
 function setupEventListeners() {
@@ -123,7 +149,7 @@ async function loadAllOperators(page = 1) {
     
     try {
         console.log('Frontend: Fetching from API...');
-        const response = await fetch(`${API_BASE}operators.php?page=${page}&limit=50`);
+        const response = await fetch(`${API_BASE}operators.php?page=${page}&limit=1000`);
         console.log('Frontend: Response received:', response.status);
         
         if (!response.ok) {
@@ -171,11 +197,53 @@ async function loadAllOperators(page = 1) {
         console.log('Frontend: filteredOperators sample:', filteredOperators[0]);
         displayResults();
         displayPagination();
+        updateResultsTitle();
         console.log('Frontend: Display results completed');
         
     } catch (error) {
         console.error('Frontend: Error loading operators:', error);
         container.innerHTML = '<div class="no-results">Error loading operators: ' + error.message + '</div>';
+    }
+}
+
+// Load all operators for filtering (without pagination limit)
+async function loadAllOperatorsForFiltering() {
+    console.log('Frontend: Loading all operators for filtering...');
+    
+    try {
+        // Load all operators without pagination limit
+        const timestamp = new Date().getTime();
+        const response = await fetch(`${API_BASE}operators.php?limit=1000&t=${timestamp}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        
+        // Check for API error
+        if (result.error) {
+            throw new Error(result.message || result.error);
+        }
+        
+        // Handle different response formats
+        if (result.data) {
+            allOperators = result.data;
+        } else if (Array.isArray(result)) {
+            allOperators = result;
+        } else {
+            throw new Error('Unexpected API response format');
+        }
+        
+        console.log('Frontend: Loaded all operators for filtering:', allOperators.length);
+        
+        // Update search results and filtered operators
+        searchResults = [...allOperators];
+        filteredOperators = [...allOperators];
+        
+    } catch (error) {
+        console.error('Frontend: Error loading all operators for filtering:', error);
+        // Fallback to current operators if loading fails
     }
 }
 
@@ -206,7 +274,7 @@ async function searchOperators(searchTerm) {
     container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching...</p></div>';
     
     try {
-        const response = await fetch(`${API_BASE}operators.php?search=${encodeURIComponent(searchTerm)}&limit=100`);
+        const response = await fetch(`${API_BASE}operators.php?search=${encodeURIComponent(searchTerm)}&limit=1000`);
         console.log('Frontend: Search response status:', response.status);
         
         if (!response.ok) {
@@ -262,21 +330,64 @@ async function searchOperators(searchTerm) {
     }
 }
 
-function applyFilters() {
+async function applyFilters() {
     const formationFilter = document.getElementById('filter-formation').value;
     const coresFilter = document.getElementById('filter-cores').value;
     const exerciseFilter = document.getElementById('filter-exercise').value;
     const rankFilter = document.getElementById('filter-rank').value;
     
-    let filtered = [...searchResults];
+    console.log('Frontend: Applying filters:', {
+        formation: formationFilter,
+        cores: coresFilter,
+        exercise: exerciseFilter,
+        rank: rankFilter
+    });
     
-    if (formationFilter) filtered = filtered.filter(o => o.formation_id == formationFilter);
-    if (coresFilter) filtered = filtered.filter(o => o.cores_id == coresFilter);
-    if (exerciseFilter) filtered = filtered.filter(o => o.exercise_ids && o.exercise_ids.includes(parseInt(exerciseFilter)));
-    if (rankFilter) filtered = filtered.filter(o => o.rank == rankFilter);
+    // Show loading state
+    const container = document.getElementById('results-container');
+    container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Filtering...</p></div>';
+    
+    // Always load all operators first to ensure we have complete dataset
+    await loadAllOperatorsForFiltering();
+    
+    console.log('Frontend: Total operators loaded for filtering:', allOperators.length);
+    
+    let filtered = [...allOperators];
+    
+    if (formationFilter) {
+        console.log('Frontend: Filtering by formation:', formationFilter);
+        filtered = filtered.filter(o => o.formation_id == formationFilter);
+        console.log('Frontend: After formation filter:', filtered.length);
+    }
+    if (coresFilter) {
+        console.log('Frontend: Filtering by cores:', coresFilter);
+        filtered = filtered.filter(o => o.cores_id == coresFilter);
+        console.log('Frontend: After cores filter:', filtered.length);
+    }
+    if (exerciseFilter) {
+        console.log('Frontend: Filtering by exercise:', exerciseFilter);
+        filtered = filtered.filter(o => o.exercise_ids && o.exercise_ids.includes(parseInt(exerciseFilter)));
+        console.log('Frontend: After exercise filter:', filtered.length);
+    }
+    if (rankFilter) {
+        console.log('Frontend: Filtering by rank:', rankFilter);
+        filtered = filtered.filter(o => o.rank == rankFilter);
+        console.log('Frontend: After rank filter:', filtered.length);
+    }
     
     filteredOperators = filtered;
+    searchResults = filtered; // Update search results to match filtered results
+    
+    console.log('Frontend: Final filtered operators:', filtered.length);
+    
+    // If no filters applied, show all operators
+    if (!formationFilter && !coresFilter && !exerciseFilter && !rankFilter) {
+        filteredOperators = [...allOperators];
+        searchResults = [...allOperators];
+    }
+    
     displayResults();
+    updateResultsTitle();
 }
 
 function clearFilters() {
@@ -291,6 +402,52 @@ function clearFilters() {
     
     // Reload all operators from database (not just reset to current search results)
     loadAllOperators();
+    updateResultsTitle();
+}
+
+function updateResultsTitle() {
+    const titleElement = document.getElementById('results-title');
+    if (!titleElement) return;
+    
+    const searchTerm = document.getElementById('search-input').value.trim();
+    const formationFilter = document.getElementById('filter-formation').value;
+    const coresFilter = document.getElementById('filter-cores').value;
+    const exerciseFilter = document.getElementById('filter-exercise').value;
+    const rankFilter = document.getElementById('filter-rank').value;
+    
+    let title = 'All Operators';
+    let filters = [];
+    
+    if (searchTerm) {
+        title = `Search Results for "${searchTerm}"`;
+    }
+    
+    if (formationFilter || coresFilter || exerciseFilter || rankFilter) {
+        if (formationFilter) {
+            const formationSelect = document.getElementById('filter-formation');
+            const formationText = formationSelect.options[formationSelect.selectedIndex].text;
+            filters.push(`Formation: ${formationText}`);
+        }
+        if (coresFilter) {
+            const coresSelect = document.getElementById('filter-cores');
+            const coresText = coresSelect.options[coresSelect.selectedIndex].text;
+            filters.push(`Corps: ${coresText}`);
+        }
+        if (exerciseFilter) {
+            const exerciseSelect = document.getElementById('filter-exercise');
+            const exerciseText = exerciseSelect.options[exerciseSelect.selectedIndex].text;
+            filters.push(`Exercise: ${exerciseText}`);
+        }
+        if (rankFilter) {
+            filters.push(`Rank: ${rankFilter}`);
+        }
+        
+        if (filters.length > 0) {
+            title += ` (Filtered by: ${filters.join(', ')})`; 
+        }
+    }
+    
+    titleElement.textContent = title;
 }
 
 
